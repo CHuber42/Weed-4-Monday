@@ -47,11 +47,29 @@ function task(descrip) {
 }
 
 function addNewEntry() {
-
   listOfTasks.push(new task($("#new-entry").val()));
+  updateResults()
+}
+
+function updateResults() {
+  var resultsDiv = $("#tasks");
+  resultsDiv.empty();
+  var newInnerHtml = new String;
   for (i = 0; i < listOfTasks.length; i++) {
-    console.log(listOfTasks[i].descrip)
+    newInnerHtml += `<li> ${listOfTasks[i].descrip} <button id='${listOfTasks[i].descrip}'>Done/Remove</button></li>`
   }
+  resultsDiv.html(newInnerHtml);
+  console.log(1);
+  //$("button").on("click", "button", removeEntry(parentElement.text()))
+}
+
+function removeEntry(idText) {
+  for (i = 0; i < listOfTasks.length; i++){
+    if (listOfTasks[i].descrip == idText) {
+      delete listOfTasks[i];
+    }
+  }
+  updateResults();
 }
 
 $(document).ready(function() {
