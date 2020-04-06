@@ -40,8 +40,18 @@ $(document).ready(function() {
 //###################################################################################################################################
 //TO-DO LIST V
 
+listOfTasks = []; 
+
+function task(descrip) {
+  this.descrip = descrip;
+}
+
 function addNewEntry() {
-  $("#tasks").append(`<li> ${$("#new-entry").val()} <button class="remove">Done/Remove</button></li>`)
+
+  listOfTasks.push(new task($("#new-entry").val()));
+  for (i = 0; i < listOfTasks.length; i++) {
+    console.log(listOfTasks[i].descrip)
+  }
 }
 
 $(document).ready(function() {
@@ -50,7 +60,23 @@ $(document).ready(function() {
     addNewEntry();
   })
 
-  $("ul#tasks").on("click", "li", function() {
-    this.remove();
-  })  
 });
+
+
+
+
+// function addNewEntry() {
+//   $("#tasks").append(`<li> ${$("#new-entry").val()} <button class="remove">Done/Remove</button></li>`);
+// }
+
+// $(document).ready(function() {
+//   $("form#to-do-list").submit(function(event) {
+//     event.preventDefault();
+//     addNewEntry();
+//   })
+
+//   $("ul#tasks").on("click", "li", function() {
+//     this.remove();
+//   })  
+
+// });
