@@ -52,18 +52,23 @@ function addNewEntry() {
 }
 
 function updateResults() {
-  var resultsDiv = $("#tasks");
-  resultsDiv.empty();
+  var resultsUl = $("#tasks");
+  resultsUl.empty();
   var newInnerHtml = new String;
   for (i = 0; i < listOfTasks.length; i++) {
-    newInnerHtml += `<li> ${listOfTasks[i].descrip} <button id='${listOfTasks[i].descrip}'>Done/Remove</button></li>`
+    newInnerHtml += "<li>" + listOfTasks[i].descrip + "<button id='" + listOfTasks[i].descrip + "'>Done/Remove</button></li>";
   }
-  resultsDiv.html(newInnerHtml);
-  console.log(1);
-  //$("button").on("click", "button", removeEntry(parentElement.text()))
+  resultsUl.html(newInnerHtml);
 }
 
-function removeEntry(idText) {
+function addEventListeners(){
+  var resultsUl = $("#tasks");
+
+}
+
+function removeEntry(listItem) {
+  //var ComparisonText = listItem.text();
+  console.log(listItem);
   for (i = 0; i < listOfTasks.length; i++){
     if (listOfTasks[i].descrip == idText) {
       delete listOfTasks[i];
@@ -76,6 +81,10 @@ $(document).ready(function() {
   $("form#to-do-list").submit(function(event) {
     event.preventDefault();
     addNewEntry();
+  })
+
+  $("#tasks").on("click", "li", function() {
+    console.log(this.textContent)
   })
 
 });
