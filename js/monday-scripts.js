@@ -61,17 +61,12 @@ function updateResults() {
   resultsUl.html(newInnerHtml);
 }
 
-function addEventListeners(){
-  var resultsUl = $("#tasks");
 
-}
-
-function removeEntry(listItem) {
-  //var ComparisonText = listItem.text();
-  console.log(listItem);
+function removeEntry(identifier) {
+  
   for (i = 0; i < listOfTasks.length; i++){
-    if (listOfTasks[i].descrip == idText) {
-      delete listOfTasks[i];
+    if (listOfTasks[i].descrip === identifier) {
+      listOfTasks.splice(i, 1);
     }
   }
   updateResults();
@@ -83,8 +78,8 @@ $(document).ready(function() {
     addNewEntry();
   })
 
-  $("#tasks").on("click", "li", function() {
-    console.log(this.textContent)
+  $("#tasks").on("click", "button", function() {
+    removeEntry(this.id);
   })
 
 });
