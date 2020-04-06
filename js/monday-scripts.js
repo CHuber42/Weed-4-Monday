@@ -25,8 +25,6 @@ function lookUpLocation(name) {
   }
 }
 
-
-
 $(document).ready(function() {
   $("#list-of-places").html(listHtml);
   $("#list-of-places").on("click", "li", function() {
@@ -36,4 +34,23 @@ $(document).ready(function() {
     $("#details").text(newHtml);
   })
 
+});
+
+//PLACES I'VE VISITED ^
+//###################################################################################################################################
+//TO-DO LIST V
+
+function addNewEntry() {
+  $("#tasks").append(`<li> ${$("#new-entry").val()} <button class="remove">Done/Remove</button></li>`)
+}
+
+$(document).ready(function() {
+  $("form#to-do-list").submit(function(event) {
+    event.preventDefault();
+    addNewEntry();
+  })
+
+  $("ul#tasks").on("click", "li", function() {
+    this.remove();
+  })  
 });
